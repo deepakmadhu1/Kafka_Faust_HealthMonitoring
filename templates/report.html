@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+</head>
+<body>
+    <div class="container">
+        <h2>Patient Report for the Last 5 Minutes</h2>
+
+        <!-- Heart Rate Chart Canvas -->
+        <canvas id="heartRateChart" width="400" height="400"></canvas>
+
+        <!-- Blood Pressure Chart Canvas -->
+        <canvas id="bloodPressureChart" width="400" height="400"></canvas>
+
+        <!-- Glucose Level Chart Canvas -->
+        <canvas id="glucoseLevelChart" width="400" height="400"></canvas>
+
+        <table class="table mt-4">
+            <thead>
+                <!-- Table headers... -->
+            </thead>
+            <tbody>
+                <!-- Table body... -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const patientRecords = {{ patient_records | tojson }};
+        const ctxHeartRate = document.getElementById('heartRateChart').getContext('2d');
+        const ctxBloodPressure = document.getElementById('bloodPressureChart').getContext('2d');
+        const ctxGlucoseLevel = document.getElementById('glucoseLevelChart').getContext('2d');
+
+        // Data for the heart rate chart
+        const timestamps = patientRecords.map(record => record.timestamp);
+        const heartRates = patientRecords.map(record => record.heart_rate);
+
+        // Data for the blood pressure chart
+        const systolicBP = patientRecords.map(record => record.systolic_bp);
+        const diastolicBP = patientRecords.map(record => record.diastolic_bp);
+
+        // Data for the glucose level chart
+        const glucoseLevels = patientRecords.map(record => record.glucose_level);
+
+        // Heart Rate Chart
+        const heartRateChart = new Chart(ctxHeartRate, {
+            // Chart configuration...
+        });
+
+        // Blood Pressure Chart
+        const bloodPressureChart = new Chart(ctxBloodPressure, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [{
+                    label: 'Systolic BP',
+                    data: systolicBP,
+                    borderColor: 'rgb(255, 99, 132)',
+                    tension: 0.1
+                }, {
+                    label: 'Diastolic BP',
+                    data: diastolicBP,
+                    borderColor: 'rgb(54, 162, 235)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Glucose Level Chart
+        const glucoseLevelChart = new Chart(ctxGlucoseLevel, {
+            type: 'line',
+            data: {
+                labels: timestamps,
+                datasets: [{
+                    label: 'Glucose Level',
+                    data: glucoseLevels,
+                    borderColor: 'rgb(255, 206, 86)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
