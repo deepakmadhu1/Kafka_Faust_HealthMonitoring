@@ -10,9 +10,9 @@ It uses advanced **data ingestion, processing, and visualization** techniques to
 ## Dashboard Example
 ![Dashboard](IMAGES/Dashboard.png)
 
-![Dashboard](IMAGES/1st page.png)
+![Dashboard](IMAGES/1stpage.png)
 
-![Dashboard](IMAGES/Alert Function.png)
+![Dashboard](IMAGES/AlertFunction.png)
 
 ##  Objectives
 - **Real-time Data Processing:** Stream and process patient vitals every second using Kafka and Faust.  
