@@ -8,7 +8,7 @@ The system provides **continuous monitoring of patient health parameters** by st
 It uses advanced **data ingestion, processing, and visualization** techniques to detect anomalies and notify healthcare providers of abnormal conditions.
 
 ## Dashboard Example
-![Dashboard](IMAGES/dashboard.png)
+![Dashboard](IMAGES/Dashboard.png)
 ![Dashboard](IMAGES/1st Page.png)
 ![Dashboard](IMAGES/Alert Function.png)
 
