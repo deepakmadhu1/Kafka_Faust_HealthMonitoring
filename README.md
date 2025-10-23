@@ -9,7 +9,9 @@ It uses advanced **data ingestion, processing, and visualization** techniques to
 
 ## Dashboard Example
 ![Dashboard](IMAGES/Dashboard.png)
+
 ![Dashboard](IMAGES/1st page.png)
+
 ![Dashboard](IMAGES/Alert Function.png)
 
 ##  Objectives
